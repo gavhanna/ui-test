@@ -6,7 +6,7 @@ body
   min-height: 100vh
   font-family: "Josefin Sans"
   overflow: hidden
-  
+
 .icon-tray
   z-index: 10
   background: pink
@@ -14,29 +14,33 @@ body
   border-top-right-radius: 10px
   border-bottom-right-radius: 10px
   cursor: pointer
-  
+
   .icon
     text-align: center
     padding: 10px 0px
     transition: all .2s ease-in-out
-    
+
     &:hover
       background: #fceece
       &:first-child
         border-top-right-radius: 10px
       &:last-child
         border-bottom-right-radius: 10px
-    
+
     &.active
       background: tomato
       box-shadow: -3px 0px 0px rgba(0,0,0,0.5) inset
       &:hover
         background: firebrick
       &:first-child
+        box-shadow: -3px 3px 0px rgba(0,0,0,0.5) inset
         border-top-right-radius: 10px
       &:last-child
         border-bottom-right-radius: 10px
- 
+        box-shadow: -3px -3px 0px rgba(0,0,0,0.5) inset
+
+
+
 
 .modal
   perspective: 1000px
@@ -55,12 +59,15 @@ body
   transform: translateX(-400px) scale(0.1) rotateY(90deg)
   //display: none
   //opacity: 0
+  @media (max-width: 500px)
+    left: 15% 
   i
     font-size: 3rem
+    opacity: 0
   h1, p
     max-width: 300px
     margin: 0 auto
-  
+
   &.active-modal
     display: flex
     flex-direction: column
@@ -68,7 +75,26 @@ body
     opacity: 1
     animation: modalPopup 600ms ease-in-out forwards
     animation-delay: .4s
-    
+
+    i
+      font-size: 3rem
+      opacity: 0
+      animation: iconPopup 600ms ease-in-out forwards
+      animation-delay: 1s
+      transform-origin: top
+
+@keyframes iconPopup
+  0%
+    transform: rotate(90deg)
+    opacity: 0
+  60%
+    transform: rotate(-20deg)
+  80%
+    transform: rotate(20deg)
+  100%
+    transform: rotate(0deg)
+    opacity: 1
+
 @keyframes modalPopup
   0%
     transform: translateX(-400px) scale(0.1) rotateY(90deg)
@@ -78,7 +104,7 @@ body
     transform: translateX(-10px) scale(0.8) rotateY(-5deg)
   100%
     transform: translateX(0px) scale(1) rotateY(0deg)
-  
+
 @keyframes modalPopupReverse
   0%
     transform: translateX(0px) scale(1) rotateY(0deg)
@@ -88,9 +114,9 @@ body
     transform: rotateX(80deg) scale(0.5)
   100%
     transform: translateX(800px) scale(0.1) rotateY(90deg)
-  
+
 .user-modal
   background: #FF5C4F
-  
+
 .search-modal
   background: #FF7D59
